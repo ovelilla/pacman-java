@@ -92,12 +92,8 @@ public abstract class Ghost extends Character implements Scorable {
     }
 
     public void move() {
-        Position targetPosition = getTargetPosition();
-
-        if (targetPosition == null) {
-            return;
-        }
-
+        // Moves the ghost according to the game rules.
+        // If the targetPosition is null (e.g. because ghost's behavior is INACTIVE}, then the ghost does not move.
         // This method calculates the euclidean distance of the 4 potential positions and choose the one with the smallest distance
         // The new position is the one that meets the all three requirements below:
         // - It has the smallest distance to the targetPosition.
@@ -107,30 +103,6 @@ public abstract class Ghost extends Character implements Scorable {
         // In addition to set the new position, this method sets the direction and invokes the hit method in order to check if the ghost hits Pacman in the new position.
         // In any case, this method invokes nextBehaviour.
         // Hint: Use Double.MAX_VALUE.
-
-        Position position = getPosition();
-
-        for (Direction direction : Direction.values()) {
-            double distance = position.distance(targetPosition);
-
-        }
-//                Position position = getPosition().move(direction);
-
-//                if (position.isPathable(getLevel()) && !direction.isOpposite(getDirection())) {
-//                    double distance = position.distance(targetPosition);
-//
-//                    if (distance < minDistance) {
-//                        minDistance = distance;
-//                        minPosition = position;
-//                        minDirection = direction;
-//                    }
-//                }
-        }
-
-//        setPosition(minPosition);
-//        setDirection(minDirection);
-        hit();
-        nextBehaviour();
     }
 
     public boolean hit() {
